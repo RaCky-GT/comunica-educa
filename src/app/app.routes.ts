@@ -4,7 +4,8 @@ export const appRoutes: Routes = [
   {
     path: 'admin',
     children: [
-      {path: '', loadComponent: () => import('./admin/pages').then(c => c.HomePageComponent)}
+      {path: '', loadComponent: () => import('./admin/pages').then(c => c.HomePageComponent)},
+      {path: 'gestiones', loadComponent: () => import('./admin/pages').then(c => c.GestionesPageComponent)},
     ]
   },
   {
@@ -12,4 +13,8 @@ export const appRoutes: Routes = [
     redirectTo: 'admin',
     pathMatch: 'full',
   },
+  {
+    path: '**',
+    redirectTo: 'admin'
+  }
 ];

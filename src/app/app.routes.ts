@@ -1,22 +1,22 @@
 import { Routes } from '@angular/router';
-import { LayoutComponent } from './admin/layout';
+import { LayoutComponent } from './public/layout';
 
 export const appRoutes: Routes = [
   {
-    path: 'admin',
+    path: 'dashboard',
     component: LayoutComponent,
     children: [
-      {path: '', loadComponent: () => import('./admin/pages').then(c => c.HomePageComponent)},
-      {path: 'gestiones', loadComponent: () => import('./admin/pages').then(c => c.GestionesPageComponent)},
+      {path: '', loadComponent: () => import('./public/pages').then(c => c.HomePageComponent)},
+      {path: 'gestiones', loadComponent: () => import('./public/pages').then(c => c.GestionesPageComponent)},
     ]
   },
   {
     path: '',
-    redirectTo: 'admin',
+    redirectTo: 'dashboard',
     pathMatch: 'full',
   },
   {
     path: '**',
-    redirectTo: 'admin'
+    redirectTo: 'dasboard'
   }
 ];

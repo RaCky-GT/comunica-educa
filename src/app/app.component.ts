@@ -6,8 +6,7 @@ import { RouterModule } from '@angular/router';
   selector: 'app-root',
   standalone: true,
   imports: [RouterModule, CommonModule],
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  template: '<router-outlet/>',
 })
 export class AppComponent {
   title = 'comunica-educa';

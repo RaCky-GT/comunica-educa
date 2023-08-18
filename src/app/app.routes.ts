@@ -1,13 +1,15 @@
-import { Routes} from "@angular/router";
+import { Routes } from '@angular/router';
 
 export const appRoutes: Routes = [
-    {
-        path: '',
-        redirectTo: 'gestiones',
-        pathMatch: 'full',
-    },
-    {
-        path: 'gestiones',
-        loadChildren: () => import('./pages/gestiones/gestiones.routes').then((routes) => routes.GestionesRoutes),
-    }
-]
+  {
+    path: 'admin',
+    children: [
+      {path: '', loadComponent: () => import('./admin/pages').then(c => c.HomePageComponent)}
+    ]
+  },
+  {
+    path: '',
+    redirectTo: 'admin',
+    pathMatch: 'full',
+  },
+];

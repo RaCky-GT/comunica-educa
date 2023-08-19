@@ -1,3 +1,13 @@
-button {
-    margin-right: 8px;
+.btn-father {
+    margin: 15px;
+    padding: 20px 50px;
+    cursor: pointer;
+    border: 3px solid rgb(10, 107, 172);
+    box-shadow: 3px 3px 0 0 white, 5px 5px 0 0 rgb(4, 0, 255);
+    transition-duration: 500ms;
+  }
+
+  .btn-father:hover{
+    box-shadow: 5px 5px rgba(11, 78, 224, 0.884), 8px 8px 0 0 rgb(4, 0, 255);
+    transform: translate(-2px -2px);
   }

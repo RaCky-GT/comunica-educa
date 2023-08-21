@@ -3,12 +3,17 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '',
-    loadComponent: () => import('@shared/pages').then(c => c.HomePageComponent)
+    path: 'home',
+    loadChildren: () => import('@modules/home').then(c => c.HomeModule)
   },
   {
     path: 'not-found',
     loadComponent: () => import('@shared/pages').then(c => c.NotFoundPageComponent)
+  },
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
   },
   {
     path: '**',

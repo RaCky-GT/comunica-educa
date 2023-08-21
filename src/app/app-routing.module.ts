@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: 'home',
-    loadChildren: () => import('@modules/home').then(c => c.HomeModule)
+    loadChildren: () => import('@modules/base').then(c => c.BaseModule)
   },
   {
     path: 'not-found',
@@ -19,7 +19,6 @@ const routes: Routes = [
     path: '**',
     redirectTo: 'not-found',
   }
-
 
 ];
 

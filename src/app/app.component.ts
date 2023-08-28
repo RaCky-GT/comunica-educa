@@ -1,15 +1,9 @@
-import { Component, OnInit, inject} from '@angular/core';
-import { PrimeNGConfig } from 'primeng/api';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   template: '<router-outlet/>',
 })
-export class AppComponent implements OnInit{
-
-  private primeNgConfig = inject(PrimeNGConfig);
-
-  ngOnInit(): void {
-    this.primeNgConfig.ripple = true;
-  }
+export class AppComponent {
+  isCollapsed = false;
 }

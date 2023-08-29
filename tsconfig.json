@@ -20,8 +20,14 @@
     "module": "ES2022",
     "useDefineForClassFields": false,
     "paths": {
-      "@modules/*": [
-        "./src/app/modules/*"
+      "@admin/*": [
+        "./src/app/admin/*"
+      ],
+      "@auth/*": [
+        "./src/app/auth/*"
+      ],
+      "@base/*": [
+        "./src/app/base/*"
       ],
       "@shared/*": [
         "./src/app/shared/*"

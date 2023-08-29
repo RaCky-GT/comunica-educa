@@ -6,6 +6,12 @@ const routes: Routes = [
   {
     path: '',
     component: AuthComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('@auth/login/login.module').then(m => m.LoginModule)
+      }
+    ]
   }
 ];
 

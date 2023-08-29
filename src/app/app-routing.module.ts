@@ -4,15 +4,15 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('@base/base-routing.module').then(m => m.BaseRoutingModule)
+    loadChildren: () => import('@base/base.module').then(m => m.BaseModule)
   },
   {
-    path: 'auth',
-    loadChildren: () => import('@auth/auth-routing.module').then(m => m.AuthRoutingModule)
+    path: 'login',
+    loadChildren: () => import('@auth/auth.module').then(m => m.AuthModule)
   },
   {
     path: 'admin',
-    loadChildren: () => import('@admin/admin-routing.module').then(m => m.AdminRoutingModule)
+    loadChildren: () => import('@admin/admin.module').then(m => m.AdminModule)
   },
   {
     path: 'not-found',

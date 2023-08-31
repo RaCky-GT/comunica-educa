@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
+
+import { IconDefinition, faBook } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-home',
@@ -7,5 +9,5 @@ import { Component } from '@angular/core';
   ]
 })
 export class HomeComponent {
-
+  faBook = signal<IconDefinition>(faBook);
 }

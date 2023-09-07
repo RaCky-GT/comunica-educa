@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "comunica-educa"
+  },
+  "targets": {
+    "comunica-educa": {
+      "hosting": {
+        "comunica-educa": [
+          "comunica-educa"
+        ]
+      }
+    }
+  }
+}

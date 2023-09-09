@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   doLogin(): void {
     this.authService
       .login(this.loginForm.value)
-      .then((resp) => this.router.navigate(['/admin']))
+      .then(() => this.router.navigate(['/admin']))
       .catch((error) => console.log(error));
   }
 

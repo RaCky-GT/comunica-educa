@@ -21,7 +21,10 @@
       </div>
       <div class="block w-full overflow-x-auto">
         <!-- Projects table -->
-        <table class="items-center w-full bg-transparent border-collapse" *ngIf="students()">
+        <table
+          class="items-center w-full bg-transparent border-collapse"
+          *ngIf="students()"
+        >
           <thead>
             <tr>
               <th
@@ -107,15 +110,22 @@
                 {{ student.grade }}
               </td>
               <td
-                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right"
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 whitespace-nowrap p-4 text-right flex justify-around"
               >
-                <!-- <app-table-dropdown></app-table-dropdown> -->
+                <button class="btn btn-secondary btn-square btn-xs">
+                  <fa-icon [icon]="faPenToSquare()" />
+                </button>
+                <button class="btn btn-accent btn-square btn-outline btn-xs">
+                  <fa-icon [icon]="faTrash()" />
+                </button>
               </td>
             </tr>
           </tbody>
         </table>
         <div *ngIf="!studentsWasFound()">
-          <h3 class="font-semibold text-lg text-sky-700">No existen Recursos</h3>
+          <h3 class="font-semibold text-lg text-sky-700">
+            No existen Recursos
+          </h3>
         </div>
       </div>
     </div>

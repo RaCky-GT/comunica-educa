@@ -1,4 +1,5 @@
-import { Component, Input, inject, signal } from '@angular/core';
+import { Component, Input,  inject, signal,  } from '@angular/core';
+import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 import { Professors } from '@core/models';
 import { ProfessorsService } from '@core/services';
@@ -16,6 +17,8 @@ export class ProfessorsComponent {
 
   public professors = signal<Professors[] | undefined>(undefined);
   public professorsWasFound = signal(true);
+  public faPenToSquare = signal(faPenToSquare);
+  public faTrash = signal(faTrash);
 
   private professorService = inject(ProfessorsService);
 
@@ -41,4 +44,5 @@ export class ProfessorsComponent {
       },
     });
   }
+
 }

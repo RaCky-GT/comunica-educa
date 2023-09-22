@@ -1,4 +1,6 @@
 import { Component, Input, OnInit, inject, signal } from '@angular/core';
+import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
+
 import { Students } from '@core/models';
 import { StudentsService } from '@core/services';
 
@@ -15,6 +17,8 @@ export class StudentsComponent implements OnInit {
 
   public students = signal<Students[] | undefined>(undefined);
   public studentsWasFound = signal(true);
+  public faPenToSquare = signal(faPenToSquare);
+  public faTrash = signal(faTrash);
 
   private studentsService = inject(StudentsService);
 

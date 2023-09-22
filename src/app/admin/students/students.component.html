@@ -21,7 +21,7 @@
       </div>
       <div class="block w-full overflow-x-auto">
         <!-- Projects table -->
-        <table class="items-center w-full bg-transparent border-collapse">
+        <table class="items-center w-full bg-transparent border-collapse" *ngIf="students()">
           <thead>
             <tr>
               <th
@@ -114,6 +114,9 @@
             </tr>
           </tbody>
         </table>
+        <div *ngIf="!studentsWasFound()">
+          <h3 class="font-semibold text-lg text-sky-700">No existen Recursos</h3>
+        </div>
       </div>
     </div>
   </div>

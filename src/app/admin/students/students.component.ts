@@ -5,8 +5,7 @@ import { StudentsService } from '@core/services';
 @Component({
   selector: 'app-students',
   templateUrl: './students.component.html',
-  styles: [
-  ]
+  styles: [],
 })
 export class StudentsComponent implements OnInit {
   @Input()
@@ -14,14 +13,15 @@ export class StudentsComponent implements OnInit {
     return this._color;
   }
 
-  public students = signal<Students[]>([]);
+  public students = signal<Students[] | undefined>(undefined);
+  public studentsWasFound = signal(true);
 
   private studentsService = inject(StudentsService);
 
   set color(color: string) {
-    this._color = color !== "light" && color !== "dark" ? "light" : color;
+    this._color = color !== 'light' && color !== 'dark' ? 'light' : color;
   }
-  private _color = "light";
+  private _color = 'light';
 
   ngOnInit(): void {
     this.loadStudents();
@@ -29,8 +29,15 @@ export class StudentsComponent implements OnInit {
 
   loadStudents() {
     this.studentsService.getStudents().subscribe({
-      next: (resp) => this.students.set(resp),
-      error: (error) => console.log(error)
-    })
+      next: (resp) => {
+        this.students.set(resp);
+        this.studentsWasFound.set(true)
+      },
+      error: (error) => {
+        console.log(error);
+        this.students.set(undefined);
+        this.studentsWasFound.set(false);
+      },
+    });
   }
 }

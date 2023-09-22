@@ -79,7 +79,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let student of professors()">
+            <tr *ngFor="let professor of professors()">
               <th
                 class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center"
               >
@@ -87,28 +87,28 @@
                   class="ml-3 font-bold"
                   [ngClass]="color === 'light' ? 'text-sky-600' : 'text-white'"
                 >
-                  {{ student.title }}
+                  {{ professor.title }}
                 </span>
               </th>
               <td
                 class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
               >
-                {{ student.description }}
+                {{ professor.description }}
               </td>
               <td
                 class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
               >
                 <a
                   class="font-normal text-blue-600"
-                  [href]="student.link"
+                  [href]="professor.link"
                   target="_blank"
-                  >{{ student.link }}</a
+                  >{{ professor.link }}</a
                 >
               </td>
               <td
                 class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
               >
-                {{ student.grade }}
+                {{ professor.grade }}
               </td>
               <td
                 class="border-t-0 px-6 align-middle border-l-0 border-r-0 whitespace-nowrap p-4 flex justify-around"
@@ -116,7 +116,7 @@
                 <button class="btn btn-secondary btn-square btn-xs">
                   <fa-icon [icon]="faPenToSquare()"/>
                 </button>
-                <button class="btn btn-accent btn-square btn-outline btn-xs">
+                <button class="btn btn-accent btn-square btn-outline btn-xs" (click)="onDelete(professor)">
                   <fa-icon [icon]="faTrash()"/>
                 </button>
               </td>

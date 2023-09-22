@@ -45,4 +45,8 @@ export class ProfessorsComponent {
     });
   }
 
+  onDelete(professor: Professors) {
+    this.professorService.deleteProfessor(professor);
+  }
+
 }

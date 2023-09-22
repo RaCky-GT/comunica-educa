@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Firestore, addDoc, collection, collectionData } from '@angular/fire/firestore';
+import { Firestore, addDoc, collection, collectionData, deleteDoc, doc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 import { Students } from '../models';
@@ -19,5 +19,10 @@ export class StudentsService {
   getStudents(): Observable<Students[]> {
     const studentRef = collection(this.firestore, 'students');
     return collectionData(studentRef, {idField: 'id'}) as Observable<Students[]>;
+  }
+
+  deleteStudent(student: Students) {
+    const professorsRef = doc(this.firestore, `students/${student.id}`);
+    return deleteDoc(professorsRef);
   }
 }

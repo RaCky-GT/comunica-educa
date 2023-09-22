@@ -44,4 +44,8 @@ export class StudentsComponent implements OnInit {
       },
     });
   }
+
+  onDelete(student: Students) {
+    this.studentsService.deleteStudent(student);
+  }
 }

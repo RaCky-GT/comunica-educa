@@ -1,14 +1,20 @@
 import { Injectable, inject } from '@angular/core';
-import { Firestore, addDoc, collection, collectionData } from '@angular/fire/firestore';
+import {
+  Firestore,
+  addDoc,
+  collection,
+  collectionData,
+  deleteDoc,
+  doc,
+} from '@angular/fire/firestore';
 
 import { Professors } from '../models';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProfessorsService {
-
   private firestore = inject(Firestore);
 
   addProfessors(professor: Professors) {
@@ -18,6 +24,13 @@ export class ProfessorsService {
 
   getProfessors(): Observable<Professors[]> {
     const professorsRef = collection(this.firestore, 'professors');
-    return collectionData(professorsRef, {idField: 'id'}) as Observable<Professors[]>;
+    return collectionData(professorsRef, { idField: 'id' }) as Observable<
+      Professors[]
+    >;
+  }
+
+  deleteProfessor(professor: Professors) {
+    const professorsRef = doc(this.firestore, `professors/${professor.id}`);
+    return deleteDoc(professorsRef);
   }
 }

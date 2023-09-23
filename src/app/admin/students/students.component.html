@@ -112,10 +112,18 @@
               <td
                 class="border-t-0 px-6 align-middle border-l-0 border-r-0 whitespace-nowrap p-4 text-right flex justify-around"
               >
-                <button class="btn btn-secondary btn-square btn-xs" onclick="my_modal_student.showModal()" (click)="onEdit(student)">
+                <button
+                  class="btn btn-secondary btn-square btn-xs"
+                  onclick="my_modal_student.showModal()"
+                  (click)="onSet(student)"
+                >
                   <fa-icon [icon]="faPenToSquare()" />
                 </button>
-                <button class="btn btn-accent btn-square btn-outline btn-xs" (click)="onDelete(student)">
+                <button
+                  class="btn btn-accent btn-square btn-outline btn-xs"
+                  onclick="modal_delete.showModal()"
+                  (click)="onSet(student)"
+                >
                   <fa-icon [icon]="faTrash()" />
                 </button>
               </td>
@@ -136,4 +144,27 @@
   <div class="modal-box w-11/12 max-w-5xl">
     <students-dialog />
   </div>
+</dialog>
+
+<dialog id="modal_delete" class="modal">
+  <form method="dialog">
+    <div class="modal-box">
+      <h3 class="font-bold text-lg">Eliminar {{ student()?.title }}</h3>
+      <p class="py-4">
+        ¿Estas seguro de eliminar el recurso <b>{{ student()?.title }}?</b>
+      </p>
+      <div class="modal-action flex justify-between">
+        <form method="dialog">
+          <button class="btn" (click)="onClose()">Cancelar</button>
+        </form>
+        <button
+          type="submit"
+          class="btn btn-error btn-outline"
+          (click)="onDelete(student()!)"
+        >
+          Eliminar
+        </button>
+      </div>
+    </div>
+  </form>
 </dialog>

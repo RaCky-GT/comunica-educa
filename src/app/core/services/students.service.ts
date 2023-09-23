@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Firestore, addDoc, collection, collectionData, deleteDoc, doc } from '@angular/fire/firestore';
+import { Firestore, addDoc, collection, collectionData, deleteDoc, doc, setDoc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 import { Students } from '../models';
@@ -24,5 +24,10 @@ export class StudentsService {
   deleteStudent(student: Students) {
     const professorsRef = doc(this.firestore, `students/${student.id}`);
     return deleteDoc(professorsRef);
+  }
+
+  updateStudent(student: Students) {
+    const studentRef = doc(this.firestore, `students/${student.id}`);
+    return setDoc(studentRef, student);
   }
 }

@@ -49,4 +49,8 @@ export class ProfessorsComponent {
     this.professorService.deleteProfessor(professor);
   }
 
+  onEdit(professor: Professors) {
+    this.professorService.setCurrentProfessor(professor);
+  }
+
 }

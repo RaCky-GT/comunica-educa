@@ -113,7 +113,7 @@
               <td
                 class="border-t-0 px-6 align-middle border-l-0 border-r-0 whitespace-nowrap p-4 flex justify-around"
               >
-                <button class="btn btn-secondary btn-square btn-xs">
+                <button class="btn btn-secondary btn-square btn-xs" onclick="my_modal_professor.showModal()" (click)="onEdit(professor)">
                   <fa-icon [icon]="faPenToSquare()"/>
                 </button>
                 <button class="btn btn-accent btn-square btn-outline btn-xs" (click)="onDelete(professor)">
@@ -135,6 +135,6 @@
 
 <dialog id="my_modal_professor" class="modal">
   <div class="modal-box w-11/12 max-w-5xl">
-    <professors-dialog />
+    <professors-dialog/>
   </div>
 </dialog>

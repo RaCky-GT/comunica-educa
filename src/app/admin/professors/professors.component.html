@@ -113,11 +113,19 @@
               <td
                 class="border-t-0 px-6 align-middle border-l-0 border-r-0 whitespace-nowrap p-4 flex justify-around"
               >
-                <button class="btn btn-secondary btn-square btn-xs" onclick="my_modal_professor.showModal()" (click)="onEdit(professor)">
-                  <fa-icon [icon]="faPenToSquare()"/>
+                <button
+                  class="btn btn-secondary btn-square btn-xs"
+                  onclick="my_modal_professor.showModal()"
+                  (click)="onSet(professor)"
+                >
+                  <fa-icon [icon]="faPenToSquare()" />
                 </button>
-                <button class="btn btn-accent btn-square btn-outline btn-xs" (click)="onDelete(professor)">
-                  <fa-icon [icon]="faTrash()"/>
+                <button
+                  class="btn btn-accent btn-square btn-outline btn-xs"
+                  onclick="modal_delete.showModal()"
+                  (click)="onSet(professor)"
+                >
+                  <fa-icon [icon]="faTrash()" />
                 </button>
               </td>
             </tr>
@@ -135,6 +143,29 @@
 
 <dialog id="my_modal_professor" class="modal">
   <div class="modal-box w-11/12 max-w-5xl">
-    <professors-dialog/>
+    <professors-dialog />
   </div>
+</dialog>
+
+<dialog id="modal_delete" class="modal">
+  <form method="dialog">
+    <div class="modal-box">
+      <h3 class="font-bold text-lg">Eliminar {{ professor()?.title }}</h3>
+      <p class="py-4">
+        ¿Estas seguro de eliminar el recurso <b>{{ professor()?.title }}?</b>
+      </p>
+      <div class="modal-action flex justify-between">
+        <form method="dialog">
+          <button class="btn" (click)="onClose()">Cancelar</button>
+        </form>
+        <button
+          type="submit"
+          class="btn btn-error btn-outline"
+          (click)="onDelete(professor()!)"
+        >
+          Eliminar
+        </button>
+      </div>
+    </div>
+  </form>
 </dialog>

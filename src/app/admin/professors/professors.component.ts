@@ -1,4 +1,4 @@
-import { Component, Input,  inject, signal,  } from '@angular/core';
+import { Component, Input,  computed,  inject, signal,  } from '@angular/core';
 import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 import { Professors } from '@core/models';
@@ -19,6 +19,7 @@ export class ProfessorsComponent {
   public professorsWasFound = signal(true);
   public faPenToSquare = signal(faPenToSquare);
   public faTrash = signal(faTrash);
+  public professor = computed(() => this.professorService.currentProfessor());
 
   private professorService = inject(ProfessorsService);
 
@@ -35,7 +36,11 @@ export class ProfessorsComponent {
     this.professorService.getProfessors().subscribe({
       next: (resp) => {
         this.professors.set(resp);
-        this.professorsWasFound.set(true);
+        if (resp.length > 0) {
+          this.professorsWasFound.set(true);
+        } else {
+          this.professorsWasFound.set(false);
+        }
       },
       error: (error) => {
         console.log(error);
@@ -47,10 +52,16 @@ export class ProfessorsComponent {
 
   onDelete(professor: Professors) {
     this.professorService.deleteProfessor(professor);
+    this.loadProfessors();
+    this.onClose();
   }
 
-  onEdit(professor: Professors) {
+  onSet(professor: Professors) {
     this.professorService.setCurrentProfessor(professor);
+  }
+
+  onClose(): void {
+    this.professorService.setCurrentProfessor(null);
   }
 
 }

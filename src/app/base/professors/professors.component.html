@@ -1,8 +1,22 @@
 <div class="flex flex-wrap text-center justify-center">
   <div class="w-full lg:w-6/12 px-4">
     <h2 class="text-4xl font-semibold text-white">Catedráticos</h2>
-    <p class="text-lg leading-relaxed mt-4 mb-4 text-blueGray-400">
-      Seleccione los recursos disponibles.
+    <p class="text-lg leading-relaxed mt-4 mb-4 text-sky-400">
+      Recursos disponibles.
     </p>
+  </div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 grid-rows-4 gap-4">
+  <div class="card lg:card-side bg-base-100 shadow-xl" *ngFor="let professor of professors()">
+    <div class="card-body">
+      <h2 class="card-title">
+        {{ professor.title }}
+        <div class="badge badge-accent">{{professor.grade}}</div>
+      </h2>
+      <p>{{ professor.description }}</p>
+      <div class="card-actions justify-end">
+        <button class="btn btn-primary" (click)="openNewTab(professor.link)">Ver</button>
+      </div>
+    </div>
   </div>
 </div>

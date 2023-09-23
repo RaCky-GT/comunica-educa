@@ -17,6 +17,7 @@ export class ProfessorsDialogComponent {
   public professorsEffect = effect(() => {
     if (this.professorsService.currentProfessor()) {
       return (this.professorsForm = this.fb.group({
+        id: [this.professorsService.currentProfessor()?.id, [Validators.required]],
         description: [this.professorsService.currentProfessor()?.description, [Validators.required]],
         link: [this.professorsService.currentProfessor()?.link, [Validators.required]],
         title: [this.professorsService.currentProfessor()?.title, [Validators.required]],

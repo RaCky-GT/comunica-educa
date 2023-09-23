@@ -1,4 +1,4 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, computed, inject, signal } from '@angular/core';
 import { Firestore, addDoc, collection, collectionData, deleteDoc, doc, setDoc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
@@ -10,6 +10,13 @@ import { Students } from '../models';
 export class StudentsService {
 
   private firestore = inject(Firestore);
+
+  private _currentStudent = signal<Students | null>(null);
+  public currentStudent = computed(() => this._currentStudent());
+
+  setCurrentStudent(student: Students | null) {
+    this._currentStudent.set(student);
+  }
 
   addStudents(student: Students) {
     const studentRef = collection(this.firestore, 'students');

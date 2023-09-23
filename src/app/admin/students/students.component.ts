@@ -48,4 +48,8 @@ export class StudentsComponent implements OnInit {
   onDelete(student: Students) {
     this.studentsService.deleteStudent(student);
   }
+
+  onEdit(student: Students) {
+    this.studentsService.setCurrentStudent(student);
+  }
 }

@@ -112,7 +112,7 @@
               <td
                 class="border-t-0 px-6 align-middle border-l-0 border-r-0 whitespace-nowrap p-4 text-right flex justify-around"
               >
-                <button class="btn btn-secondary btn-square btn-xs">
+                <button class="btn btn-secondary btn-square btn-xs" onclick="my_modal_student.showModal()" (click)="onEdit(student)">
                   <fa-icon [icon]="faPenToSquare()" />
                 </button>
                 <button class="btn btn-accent btn-square btn-outline btn-xs" (click)="onDelete(student)">

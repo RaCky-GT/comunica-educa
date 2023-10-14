@@ -8,7 +8,7 @@ import {
   doc,
   setDoc,
 } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 import { Managements } from '../models';
 
@@ -33,6 +33,13 @@ export class ManagementsService {
   getManagements(): Observable<Managements[]> {
     const managementsRef = collection(this.firestore, 'managements');
     return collectionData(managementsRef, { idField: 'id' }) as Observable<
+      Managements[]
+    >;
+  }
+
+  getManagement(id: string): Observable<Managements[]> {
+    const managementsRef = collection(this.firestore, `managements/${id}`);
+    return collectionData(managementsRef, { idField: id }) as Observable<
       Managements[]
     >;
   }

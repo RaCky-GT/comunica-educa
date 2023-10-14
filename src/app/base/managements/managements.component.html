@@ -1,8 +1,27 @@
 <div class="flex flex-wrap text-center justify-center">
   <div class="w-full lg:w-6/12 px-4">
     <h2 class="text-4xl font-semibold text-white">Gestiones</h2>
-    <p class="text-lg leading-relaxed mt-4 mb-4 text-blueGray-400">
-      Seleccione los recursos disponibles.
+    <p class="text-lg leading-relaxed mt-4 mb-4 text-sky-400">
+      Recursos disponibles.
     </p>
+  </div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 grid-rows-4 gap-4">
+  <div
+    class="card lg:card-side bg-base-100 shadow-xl"
+    *ngFor="let managements of managements()"
+  >
+    <div class="card-body">
+      <h2 class="card-title">
+        {{ managements.title }}
+        <div class="badge badge-accent">
+          {{ managements.status === true ? "Activa" : "Inactiva" }}
+        </div>
+      </h2>
+      <p>{{ managements.description }}</p>
+      <!-- <div class="card-actions justify-end">
+        <button class="btn btn-primary">Ver</button>
+      </div> -->
+    </div>
   </div>
 </div>

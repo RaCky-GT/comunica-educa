@@ -82,14 +82,12 @@
               <td
                 class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
               >
-
-                  {{ management.description }}
+                {{ management.description }}
               </td>
               <td
                 class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
               >
-
-                  {{ management.status === true ? 'Activo' : 'Inactivo' }}
+                {{ management.status === true ? "Activo" : "Inactivo" }}
               </td>
               <td
                 class="border-t-0 px-6 align-middle border-l-0 border-r-0 whitespace-nowrap p-4 flex justify-around"
@@ -101,6 +99,14 @@
                 >
                   <fa-icon [icon]="faPenToSquare()" />
                 </button>
+
+                <button
+                  class="btn btn-primary btn-square btn-xs"
+                  (click)="onView(management)"
+                >
+                  <fa-icon [icon]="faEye()" />
+                </button>
+
                 <button
                   class="btn btn-accent btn-square btn-outline btn-xs"
                   onclick="modal_delete.showModal()"

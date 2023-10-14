@@ -80,24 +80,16 @@
                 </span>
               </th>
               <td
-                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center"
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
               >
-                <span
-                  class="ml-3 font-bold"
-                  [ngClass]="color === 'light' ? 'text-sky-600' : 'text-white'"
-                >
+
                   {{ management.description }}
-                </span>
               </td>
               <td
-                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center"
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
               >
-                <span
-                  class="ml-3 font-bold"
-                  [ngClass]="color === 'light' ? 'text-sky-600' : 'text-white'"
-                >
-                  {{ management.status }}
-                </span>
+
+                  {{ management.status === true ? 'Activo' : 'Inactivo' }}
               </td>
               <td
                 class="border-t-0 px-6 align-middle border-l-0 border-r-0 whitespace-nowrap p-4 flex justify-around"

@@ -5,6 +5,7 @@ import { ManagementsRoutingModule } from './managements-routing.module';
 import { ManagementsComponent } from './managements.component';
 import { ManagementsDialogComponent } from './components/managements-dialog/managements-dialog.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     CommonModule,
     ManagementsRoutingModule,
     FontAwesomeModule,
+    ReactiveFormsModule,
   ]
 })
 export class ManagementsModule { }

@@ -51,4 +51,18 @@ export class ManagementsComponent implements OnInit {
     });
   }
 
+  onDelete(management: Managements) {
+    this.managementsService.deleteManagement(management);
+    this.loadManagements();
+    this.onClose();
+  }
+
+  onSet(management: Managements) {
+    this.managementsService.setCurrentManagement(management);
+  }
+
+  onClose(): void {
+    this.managementsService.setCurrentManagement(null);
+  }
+
 }

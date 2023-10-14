@@ -12,7 +12,7 @@
             <button
               class="bg-blue-600 text-white active:bg-blue-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
               type="button"
-              onclick="my_modal_professor.showModal()"
+              onclick="my_modal_managements.showModal()"
             >
               Crear
             </button>
@@ -102,20 +102,20 @@
               <td
                 class="border-t-0 px-6 align-middle border-l-0 border-r-0 whitespace-nowrap p-4 flex justify-around"
               >
-                <!-- <button
+                <button
                   class="btn btn-secondary btn-square btn-xs"
-                  onclick="my_modal_professor.showModal()"
-                  (click)="onSet(professor)"
+                  onclick="my_modal_managements.showModal()"
+                  (click)="onSet(management)"
                 >
                   <fa-icon [icon]="faPenToSquare()" />
                 </button>
                 <button
                   class="btn btn-accent btn-square btn-outline btn-xs"
                   onclick="modal_delete.showModal()"
-                  (click)="onSet(professor)"
+                  (click)="onSet(management)"
                 >
                   <fa-icon [icon]="faTrash()" />
-                </button> -->
+                </button>
               </td>
             </tr>
           </tbody>
@@ -129,3 +129,32 @@
     </div>
   </div>
 </div>
+
+<dialog id="my_modal_managements" class="modal">
+  <div class="modal-box w-11/12 max-w-5xl">
+    <managements-dialog />
+  </div>
+</dialog>
+
+<dialog id="modal_delete" class="modal">
+  <form method="dialog">
+    <div class="modal-box">
+      <h3 class="font-bold text-lg">Eliminar {{ management()?.title }}</h3>
+      <p class="py-4">
+        ¿Estas seguro de eliminar el recurso <b>{{ management()?.title }}?</b>
+      </p>
+      <div class="modal-action flex justify-between">
+        <form method="dialog">
+          <button class="btn" (click)="onClose()">Cancelar</button>
+        </form>
+        <button
+          type="submit"
+          class="btn btn-error btn-outline"
+          (click)="onDelete(management()!)"
+        >
+          Eliminar
+        </button>
+      </div>
+    </div>
+  </form>
+</dialog>

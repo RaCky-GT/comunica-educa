@@ -1,4 +1,5 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
+import { Observable } from 'rxjs';
 import {
   Firestore,
   addDoc,
@@ -10,7 +11,6 @@ import {
 } from '@angular/fire/firestore';
 
 import { Professors } from '../models';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',

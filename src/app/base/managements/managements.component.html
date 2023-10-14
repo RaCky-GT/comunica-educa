@@ -6,10 +6,13 @@
     </p>
   </div>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-3 grid-rows-4 gap-4">
+<div
+  class="grid grid-cols-1 md:grid-cols-3 grid-rows-4 gap-4"
+  *ngFor="let managements of managements()"
+>
   <div
     class="card lg:card-side bg-base-100 shadow-xl"
-    *ngFor="let managements of managements()"
+    *ngIf="managements.status === true"
   >
     <div class="card-body">
       <h2 class="card-title">
@@ -20,8 +23,8 @@
       </h2>
       <p>{{ managements.description }}</p>
       <!-- <div class="card-actions justify-end">
-        <button class="btn btn-primary">Ver</button>
-      </div> -->
+          <button class="btn btn-primary">Ver</button>
+        </div> -->
     </div>
   </div>
 </div>

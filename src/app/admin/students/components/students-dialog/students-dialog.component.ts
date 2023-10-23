@@ -8,6 +8,7 @@ import { StudentsService } from '@core/services';
 })
 export class StudentsDialogComponent {
   public studentsForm!: FormGroup;
+  private file?: File;
 
   private fb = inject(FormBuilder);
   private studentsService = inject(StudentsService);
@@ -37,20 +38,25 @@ export class StudentsDialogComponent {
     try {
       if (this.student()) {
         const response = await this.studentsService.updateStudent(
-          this.studentsForm.value
+          this.studentsForm.value,
+          this.file,
         );
         console.log(response);
         this.onClose();
       } else {
         const response = await this.studentsService.addStudents(
-          this.studentsForm.value
+          this.studentsForm.value,
+          this.file,
         );
-        console.log(response);
         this.onClose();
       }
     } catch (error) {
       console.log(error);
     }
+  }
+
+  upFile($event: any) {
+    this.file = $event.target.files[0];
   }
 
   onClose(): void {

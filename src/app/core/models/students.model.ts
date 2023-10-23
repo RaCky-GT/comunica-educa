@@ -4,4 +4,5 @@ export interface Students {
   link: string;
   title: string;
   grade: string;
+  fileUrl?: string;
 }

@@ -48,7 +48,6 @@ export class ProfessorsDialogComponent {
           this.professorsForm.value,
           this.file,
         );
-        console.log(response);
         this.onClose();
       }
     } catch (error) {
@@ -56,7 +55,7 @@ export class ProfessorsDialogComponent {
     }
   }
 
-  subirArchivo($event: any) {
+  upFile($event: any) {
     this.file = $event.target.files[0];
   }
 

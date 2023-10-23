@@ -16,6 +16,7 @@
       <p>{{ professor.description }}</p>
       <div class="card-actions justify-end">
         <button class="btn btn-primary" (click)="openNewTab(professor.link)">Ver</button>
+        <button class="btn btn-secondary" *ngIf="professor.fileUrl" (click)="openNewTab(professor.fileUrl)">Archivo</button>
       </div>
     </div>
   </div>

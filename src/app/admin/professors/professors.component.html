@@ -75,6 +75,16 @@
                     ? 'bg-sky-50 text-sky-500 border-sky-100'
                     : 'bg-red-800 text-red-300 border-red-700'
                 "
+              >
+                Archivo
+              </th>
+              <th
+                class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+                [ngClass]="
+                  color === 'light'
+                    ? 'bg-sky-50 text-sky-500 border-sky-100'
+                    : 'bg-red-800 text-red-300 border-red-700'
+                "
               ></th>
             </tr>
           </thead>
@@ -109,6 +119,16 @@
                 class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
               >
                 {{ professor.grade }}
+              </td>
+              <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+              >
+                <a
+                  class="font-normal text-blue-600"
+                  [href]="professor.fileUrl"
+                  target="_blank"
+                >{{ professor.fileUrl ? 'Ver Archivo' : '' }}</a
+                >
               </td>
               <td
                 class="border-t-0 px-6 align-middle border-l-0 border-r-0 whitespace-nowrap p-4 flex justify-around"

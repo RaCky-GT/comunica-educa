@@ -9,6 +9,7 @@ import { ProfessorsService } from '@core/services';
 })
 export class ProfessorsDialogComponent {
   public professorsForm!: FormGroup;
+  private file?: File;
 
   private fb = inject(FormBuilder);
   private professorsService = inject(ProfessorsService);
@@ -37,13 +38,15 @@ export class ProfessorsDialogComponent {
     try {
       if (this.professor()) {
         const response = await this.professorsService.updateProfessor(
-          this.professorsForm.value
+          this.professorsForm.value,
+          this.file,
         );
         console.log(response);
         this.onClose();
       } else {
         const response = await this.professorsService.addProfessors(
-          this.professorsForm.value
+          this.professorsForm.value,
+          this.file,
         );
         console.log(response);
         this.onClose();
@@ -51,6 +54,10 @@ export class ProfessorsDialogComponent {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  subirArchivo($event: any) {
+    this.file = $event.target.files[0];
   }
 
   onClose(): void {

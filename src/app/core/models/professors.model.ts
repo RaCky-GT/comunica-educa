@@ -4,4 +4,5 @@ export interface Professors {
   link: string;
   title: string;
   grade: string;
+  fileUrl?: string;
 }

@@ -1,4 +1,4 @@
-import { Component, Input, computed, inject, signal } from '@angular/core';
+import {Component, Input, computed, inject, signal, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { Request } from '@core/models';
 import { ManagementsService } from '@core/services';
@@ -10,22 +10,24 @@ import { faEye, faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons
   styles: [
   ]
 })
-export class RequestPageComponent {
+export class RequestPageComponent implements OnInit{
   @Input()
   get color(): string {
     return this._color;
   }
+
+  @Input()
+  id?: string;
 
   public managements = signal<Request[] | undefined>(undefined);
   public managementsWasFound = signal(true);
   public faPenToSquare = signal(faPenToSquare);
   public faTrash = signal(faTrash);
   public faEye = signal(faEye);
+  public request = computed(() => this.managementsService.currentRequest());
 
   private managementsService = inject(ManagementsService);
   private router = inject(Router);
-
-  // public management = this.managementsService.getManagement(this.id);
 
   set color(color: string) {
     this._color = color !== "light" && color !== "dark" ? "light" : color;
@@ -33,11 +35,11 @@ export class RequestPageComponent {
   private _color = "light";
 
   ngOnInit(): void {
-    this.loadManagements();
+    this.loadRequest();
   }
 
-  loadManagements() {
-    this.managementsService.getManagements().subscribe({
+  loadRequest() {
+    this.managementsService.getRequest(this.id || '').subscribe({
       next: (resp) => {
         this.managements.set(resp);
         if (resp.length > 0) {
@@ -60,16 +62,16 @@ export class RequestPageComponent {
   }
 
   onDelete(management: Request) {
-    this.managementsService.deleteManagement(management);
-    this.loadManagements();
+    this.managementsService.deleteRequest(management, this.id!);
+    this.loadRequest();
     this.onClose();
   }
 
   onSet(management: Request) {
-    this.managementsService.setCurrentManagement(management);
+    this.managementsService.setCurrentRequest(management);
   }
 
   onClose(): void {
-    this.managementsService.setCurrentManagement(null);
+    this.managementsService.setCurrentRequest(null);
   }
 }

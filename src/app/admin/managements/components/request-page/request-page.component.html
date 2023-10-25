@@ -9,12 +9,19 @@
             class="relative w-full px-4 max-w-full flex-grow flex-1 flex justify-between"
           >
             <h3 class="font-semibold text-lg text-sky-700">
-              <!-- Gestión: {{ management | json }} -->
+              Solicitudes
             </h3>
+            <button
+              class="bg-teal-600 text-white active:bg-teal-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+              type="button"
+              [routerLink]="'/admin/managements'"
+            >
+              Volver a Gestiones
+            </button>
             <button
               class="bg-blue-600 text-white active:bg-blue-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
               type="button"
-              onclick="my_modal_managements.showModal()"
+              onclick="my_modal_request.showModal()"
             >
               Crear solicitud
             </button>
@@ -22,8 +29,138 @@
         </div>
       </div>
       <div class="block w-full overflow-x-auto">
+        <table
+          class="items-center w-full bg-transparent border-collapse"
+          *ngIf="managements()"
+        >
+          <thead>
+          <tr>
+            <th
+              class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              [ngClass]="
+                  color === 'light'
+                    ? 'bg-sky-50 text-sky-500 border-sky-100'
+                    : 'bg-red-800 text-red-300 border-red-700'
+                "
+            >
+              Titulo
+            </th>
+            <th
+              class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              [ngClass]="
+                  color === 'light'
+                    ? 'bg-sky-50 text-sky-500 border-sky-100'
+                    : 'bg-red-800 text-red-300 border-red-700'
+                "
+            >
+              Descripción
+            </th>
+            <th
+              class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              [ngClass]="
+                  color === 'light'
+                    ? 'bg-sky-50 text-sky-500 border-sky-100'
+                    : 'bg-red-800 text-red-300 border-red-700'
+                "
+            >
+              Status
+            </th>
+            <th
+              class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              [ngClass]="
+                  color === 'light'
+                    ? 'bg-sky-50 text-sky-500 border-sky-100'
+                    : 'bg-red-800 text-red-300 border-red-700'
+                "
+            ></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let management of managements()">
+            <th
+              class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center"
+            >
+                <span
+                  class="ml-3 font-bold"
+                  [ngClass]="color === 'light' ? 'text-sky-600' : 'text-white'"
+                >
+                  {{ management.title }}
+                </span>
+            </th>
+            <td
+              class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+            >
+              {{ management.description }}
+            </td>
+            <td
+              class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+            >
+              {{ management.status === true ? "Activo" : "Inactivo" }}
+            </td>
+            <td
+              class="border-t-0 px-6 align-middle border-l-0 border-r-0 whitespace-nowrap p-4 flex justify-around"
+            >
+              <button
+                class="btn btn-secondary btn-square btn-xs"
+                onclick="my_modal_request.showModal()"
+                (click)="onSet(management)"
+              >
+                <fa-icon [icon]="faPenToSquare()" />
+              </button>
 
+              <button
+                class="btn btn-primary btn-square btn-xs"
+                (click)="onView(management)"
+              >
+                <fa-icon [icon]="faEye()" />
+              </button>
+
+              <button
+                class="btn btn-accent btn-square btn-outline btn-xs"
+                onclick="modal_delete.showModal()"
+                (click)="onSet(management)"
+              >
+                <fa-icon [icon]="faTrash()" />
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <div *ngIf="!managementsWasFound()">
+          <h3 class="font-semibold text-lg text-sky-700">
+            No existen Recursos
+          </h3>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+<dialog id="my_modal_request" class="modal">
+  <div class="modal-box w-11/12 max-w-5xl">
+    <request-dialog [id]="id!"/>
+  </div>
+</dialog>
+
+<dialog id="modal_delete" class="modal">
+  <form method="dialog">
+    <div class="modal-box">
+      <h3 class="font-bold text-lg">Eliminar {{ request()?.title }}</h3>
+      <p class="py-4">
+        ¿Estas seguro de eliminar el recurso <b>{{ request()?.title }}?</b>
+      </p>
+      <div class="modal-action flex justify-between">
+        <form method="dialog">
+          <button class="btn" (click)="onClose()">Cancelar</button>
+        </form>
+        <button
+          type="submit"
+          class="btn btn-error btn-outline"
+          (click)="onDelete(request()!)"
+        >
+          Eliminar
+        </button>
+      </div>
+    </div>
+  </form>
+</dialog>

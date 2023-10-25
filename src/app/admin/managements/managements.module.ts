@@ -7,13 +7,15 @@ import { ManagementsDialogComponent } from './components/managements-dialog/mana
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RequestPageComponent } from './components/request-page/request-page.component';
+import { RequestDialogComponent } from './components/request-dialog/request-dialog.component';
 
 
 @NgModule({
   declarations: [
     ManagementsComponent,
     ManagementsDialogComponent,
-    RequestPageComponent
+    RequestPageComponent,
+    RequestDialogComponent
   ],
   imports: [
     CommonModule,

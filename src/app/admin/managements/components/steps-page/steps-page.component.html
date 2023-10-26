@@ -72,6 +72,66 @@
                     ? 'bg-sky-50 text-sky-500 border-sky-100'
                     : 'bg-red-800 text-red-300 border-red-700'
                 "
+            >
+              Institución
+            </th>
+            <th
+              class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              [ngClass]="
+                  color === 'light'
+                    ? 'bg-sky-50 text-sky-500 border-sky-100'
+                    : 'bg-red-800 text-red-300 border-red-700'
+                "
+            >
+              Dirección
+            </th>
+            <th
+              class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              [ngClass]="
+                  color === 'light'
+                    ? 'bg-sky-50 text-sky-500 border-sky-100'
+                    : 'bg-red-800 text-red-300 border-red-700'
+                "
+            >
+              Link
+            </th>
+            <th
+              class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              [ngClass]="
+                  color === 'light'
+                    ? 'bg-sky-50 text-sky-500 border-sky-100'
+                    : 'bg-red-800 text-red-300 border-red-700'
+                "
+            >
+              Contacto
+            </th>
+            <th
+              class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              [ngClass]="
+                  color === 'light'
+                    ? 'bg-sky-50 text-sky-500 border-sky-100'
+                    : 'bg-red-800 text-red-300 border-red-700'
+                "
+            >
+              PBX
+            </th>
+            <th
+              class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              [ngClass]="
+                  color === 'light'
+                    ? 'bg-sky-50 text-sky-500 border-sky-100'
+                    : 'bg-red-800 text-red-300 border-red-700'
+                "
+            >
+              Documento
+            </th>
+            <th
+              class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              [ngClass]="
+                  color === 'light'
+                    ? 'bg-sky-50 text-sky-500 border-sky-100'
+                    : 'bg-red-800 text-red-300 border-red-700'
+                "
             ></th>
           </tr>
           </thead>
@@ -96,6 +156,47 @@
               class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
             >
               {{ management.status === true ? "Activo" : "Inactivo" }}
+            </td>
+            <td
+              class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+            >
+              {{ management.company }}
+            </td>
+            <td
+              class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+            >
+              {{ management.address }}
+            </td>
+            <td
+              class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+            >
+              <a
+                class="font-normal text-blue-600"
+                [href]="management.link"
+                target="_blank"
+                *ngIf="management.link"
+              >Ver Link</a
+              >
+            </td>
+            <td
+              class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+            >
+              {{ management.contact }}
+            </td>
+            <td
+              class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+            >
+              {{ management.tel }}
+            </td>
+            <td
+              class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+            >
+              <a
+                class="font-normal text-blue-600"
+                [href]="management.fileUrl"
+                target="_blank"
+              >{{ management.fileUrl ? 'Ver Archivo' : '' }}</a
+              >
             </td>
             <td
               class="border-t-0 px-6 align-middle border-l-0 border-r-0 whitespace-nowrap p-4 flex justify-around"

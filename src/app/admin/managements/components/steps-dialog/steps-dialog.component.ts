@@ -26,12 +26,24 @@ export class StepsDialogComponent {
         description: [this.managementsService.currentStep()?.description, [Validators.required]],
         status: [this.managementsService.currentStep()?.status, [Validators.required]],
         title: [this.managementsService.currentStep()?.title, [Validators.required]],
+        company: [this.managementsService.currentStep()?.company, Validators.required],
+        address: [this.managementsService.currentStep()?.address, Validators.required],
+        link: [this.managementsService.currentStep()?.link, Validators.required],
+        contact: [this.managementsService.currentStep()?.contact, Validators.required],
+        tel: [this.managementsService.currentStep()?.tel, Validators.required],
+        fileUrl: [this.managementsService.currentStep()?.fileUrl, Validators.required],
       }));
     } else {
       return (this.stepsForm = this.fb.group({
         description: ['', [Validators.required]],
         status: [true, [Validators.required]],
         title: ['', [Validators.required]],
+        company: ['', Validators.required],
+        address: ['', Validators.required],
+        link: ['', Validators.required],
+        contact: ['', Validators.required],
+        tel: ['', Validators.required],
+        fileUrl: ['', Validators.required],
       }));
     }
   })

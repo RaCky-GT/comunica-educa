@@ -63,7 +63,7 @@ export class StepsPageComponent {
     this.onClose();
   }
 
-  onSet(management: Request) {
+  onSet(management: Steps) {
     this.managementsService.setCurrentStep(management);
   }
 

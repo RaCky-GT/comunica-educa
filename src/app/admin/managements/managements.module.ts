@@ -8,6 +8,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RequestPageComponent } from './components/request-page/request-page.component';
 import { RequestDialogComponent } from './components/request-dialog/request-dialog.component';
+import { StepsPageComponent } from './components/steps-page/steps-page.component';
+import { StepsDialogComponent } from './components/steps-dialog/steps-dialog.component';
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import { RequestDialogComponent } from './components/request-dialog/request-dial
     ManagementsComponent,
     ManagementsDialogComponent,
     RequestPageComponent,
-    RequestDialogComponent
+    RequestDialogComponent,
+    StepsPageComponent,
+    StepsDialogComponent
   ],
   imports: [
     CommonModule,

@@ -57,7 +57,7 @@ export class RequestPageComponent implements OnInit{
   }
 
   onView(management: Request) {
-    this.router.navigateByUrl(`/admin/managements/${management.id}`);
+    this.router.navigateByUrl(`/admin/managements/${this.id}/${management.id}`);
     this.managementsService.setCurrentManagement(management);
   }
 

@@ -14,6 +14,7 @@ export class StepsDialogComponent {
   step!: string;
 
   public stepsForm!: FormGroup;
+  private file?: File;
 
   private fb = inject(FormBuilder);
   private managementsService = inject(ManagementsService);
@@ -31,7 +32,6 @@ export class StepsDialogComponent {
         link: [this.managementsService.currentStep()?.link, Validators.required],
         contact: [this.managementsService.currentStep()?.contact, Validators.required],
         tel: [this.managementsService.currentStep()?.tel, Validators.required],
-        fileUrl: [this.managementsService.currentStep()?.fileUrl, Validators.required],
       }));
     } else {
       return (this.stepsForm = this.fb.group({
@@ -43,7 +43,6 @@ export class StepsDialogComponent {
         link: ['', Validators.required],
         contact: ['', Validators.required],
         tel: ['', Validators.required],
-        fileUrl: ['', Validators.required],
       }));
     }
   })
@@ -55,6 +54,7 @@ export class StepsDialogComponent {
           this.stepsForm.value,
           this.id,
           this.step,
+          this.file,
         );
         console.log(response);
         this.onClose();
@@ -63,6 +63,7 @@ export class StepsDialogComponent {
           this.stepsForm.value,
           this.id,
           this.step,
+          this.file,
         );
         console.log(response);
         this.onClose();
@@ -70,6 +71,10 @@ export class StepsDialogComponent {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  upFile($event: any) {
+    this.file = $event.target.files[0];
   }
 
   onClose(): void {

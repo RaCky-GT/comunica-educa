@@ -12,12 +12,14 @@ import {
 import { Observable, map } from 'rxjs';
 
 import {Managements, Request, Steps} from '../models';
+import {ref, Storage, uploadBytes, getDownloadURL} from "@angular/fire/storage";
 
 @Injectable({
   providedIn: 'root',
 })
 export class ManagementsService {
   private firestore = inject(Firestore);
+  private storage = inject(Storage);
 
   private _currentManagement = signal<Managements | null>(null);
   public currentManagement = computed(() => this._currentManagement());
@@ -71,9 +73,21 @@ export class ManagementsService {
     return addDoc(managementsRef, management);
   }
 
-  addStep(management: Steps, id: string, req: string) {
+  addStep(step: Steps, id: string, req: string, file?: File) {
+    if (file) {
+      const filePath = `managements/${id}/request/${req}/steps/${step.id}/${file.name}`;
+      const fileRef = ref(this.storage, filePath);
+
+      uploadBytes(fileRef, file).then(async () => {
+        const fileUrl = await this.getDoc(filePath);
+        step.fileUrl = fileUrl;
+
+        const managementsRef = doc(this.firestore, `managements/${id}/request/${req}/steps/${step.id}`);
+        return setDoc(managementsRef, step);
+      }).catch(error => console.log(error));
+    }
     const managementsRef = collection(this.firestore, `managements/${id}/request/${req}/steps`);
-    return addDoc(managementsRef, management);
+    return addDoc(managementsRef, step);
   }
 
   deleteManagement(management: Managements) {
@@ -101,8 +115,26 @@ export class ManagementsService {
     return setDoc(managementsRef, request);
   }
 
-  updateStep(step : Steps, id: string, req: string) {
+  updateStep(step : Steps, id: string, req: string, file?: File) {
+    if (file) {
+      const filePath = `managements/${id}/request/${req}/steps/${step.id}/${file.name}`;
+      const fileRef = ref(this.storage, filePath);
+
+      uploadBytes(fileRef, file).then(async () => {
+        const fileUrl = await this.getDoc(filePath);
+        step.fileUrl = fileUrl;
+
+        const managementsRef = doc(this.firestore, `managements/${id}/request/${req}/steps/${step.id}`);
+        return setDoc(managementsRef, step);
+      }).catch(error => console.log(error));
+    }
     const managementsRef = doc(this.firestore, `managements/${id}/request/${req}/steps/${step.id}`);
     return setDoc(managementsRef, step);
+  }
+
+  private async getDoc(name: string) {
+    const docRef = ref(this.storage, name);
+    const url = await getDownloadURL(docRef);
+    return url;
   }
 }

@@ -1,5 +1,6 @@
 export interface Steps {
   id: string;
+  step_number: number;
   description: string;
   title: string;
   status: boolean;

@@ -4,6 +4,26 @@
       class="relative flex flex-col bg-white min-w-0 break-words w-full mb-6 shadow-lg rounded"
     >
       <div class="rounded-t mb-0 px-4 py-3 border-0">
+        <div class="text-sm breadcrumbs">
+          <ul>
+            <li>
+              <a routerLink="/admin/managements">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="w-4 h-4 mr-2 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
+                Gestiones
+              </a>
+            </li>
+            <li>
+              <a [routerLink]="'/admin/managements/'+id">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="w-4 h-4 mr-2 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
+              Solicitudes
+              </a>
+            </li>
+            <li>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="w-4 h-4 mr-2 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
+              Pasos
+            </li>
+          </ul>
+        </div>
         <div class="flex flex-wrap items-center">
           <div
             class="relative w-full px-4 max-w-full flex-grow flex-1 flex justify-between"
@@ -44,6 +64,16 @@
                 "
             >
               Titulo
+            </th>
+            <th
+              class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              [ngClass]="
+                  color === 'light'
+                    ? 'bg-sky-50 text-sky-500 border-sky-100'
+                    : 'bg-red-800 text-red-300 border-red-700'
+                "
+            >
+              Paso #
             </th>
             <th
               class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
@@ -150,12 +180,17 @@
             <td
               class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
             >
+              {{ management.step_number }}
+            </td>
+            <td
+              class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+            >
               {{ management.description }}
             </td>
             <td
               class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
             >
-              {{ management.status === true ? "Activo" : "Inactivo" }}
+              {{ management.status ? "Activo" : "Inactivo" }}
             </td>
             <td
               class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
@@ -202,7 +237,7 @@
               class="border-t-0 px-6 align-middle border-l-0 border-r-0 whitespace-nowrap p-4 flex justify-around"
             >
               <button
-                class="btn btn-secondary btn-square btn-xs"
+                class="btn btn-secondary btn-square btn-xs mr-3"
                 onclick="my_modal_request.showModal()"
                 (click)="onSet(management)"
               >

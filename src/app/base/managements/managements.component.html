@@ -10,25 +10,19 @@
   <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
   <div class="drawer-content flex flex-col items-center justify-center">
     <!-- Page content here -->
-    <label for="my-drawer-2" class="btn btn-primary drawer-button lg:hidden">Open drawer</label>
+    <label for="my-drawer-2" class="btn btn-primary drawer-button lg:hidden">Abrir Gestiones</label>
+    <div *ngIf="id; else elseBlock">
+      <h1>Hola</h1>
+    </div>
+    <ng-template #elseBlock>
+      <h1 class="text-white">Seleccione una gestion</h1>
+    </ng-template>
 
   </div>
   <div class="drawer-side">
     <label for="my-drawer-2" aria-label="close sidebar" class="drawer-overlay"></label>
     <ul class="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
-      <!-- Sidebar content here -->
-<!--      <li *ngFor="let management of managements()"><a>{{ management.title }}</a></li>-->
-      <li *ngFor="let management of managements()">
-        <div class="collapse bg-base-200">
-          <input type="checkbox" />
-          <div class="collapse-title text-xl font-medium">
-            Click me to show/hide content
-          </div>
-          <div class="collapse-content">
-            <p>hello</p>
-          </div>
-        </div>
-      </li>
+      <li *ngFor="let management of managements()"><a [routerLink]="'/managements/'+management.id">{{ management.title }}</a></li>
     </ul>
 
   </div>

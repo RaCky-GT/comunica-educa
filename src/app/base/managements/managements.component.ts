@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import {Component, OnInit, inject, signal, Input} from '@angular/core';
 import { Managements } from '@core/models';
 
 import { ManagementsService } from '@core/services';
@@ -10,6 +10,10 @@ import { ManagementsService } from '@core/services';
   ]
 })
 export class ManagementsComponent implements OnInit {
+  @Input()
+  id?: string;
+
+
   private managementsService = inject(ManagementsService);
 
   public managements = signal<Managements[] | undefined>(undefined);

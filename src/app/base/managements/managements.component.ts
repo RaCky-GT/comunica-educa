@@ -1,5 +1,5 @@
 import {Component, OnInit, inject, signal, Input} from '@angular/core';
-import { Managements, Request } from '@core/models';
+import {Managements, Request, Steps} from '@core/models';
 
 import { ManagementsService } from '@core/services';
 import {Router} from "@angular/router";
@@ -14,16 +14,21 @@ export class ManagementsComponent implements OnInit {
   @Input()
   id?: string;
 
+  @Input()
+  id_steps?: string;
+
   private managementsService = inject(ManagementsService);
   #router = inject(Router);
 
   public managements = signal<Managements[] | undefined>(undefined);
   public requests = signal<Request[]>([])
+  public steps = signal<Steps[]>([])
   public managementsWasFound = signal(true);
 
   ngOnInit(): void {
     this.loadManagements();
     this.loadOneManagement();
+    this.loadOneRequest();
   }
 
   loadManagements(): void {
@@ -53,7 +58,20 @@ export class ManagementsComponent implements OnInit {
     }
   }
 
+  loadOneRequest() {
+    if (this.id_steps) {
+      this.managementsService.getSteps(this.id!, this.id_steps).subscribe({
+        next: ((resp) => this.steps.set(resp)),
+        error: ((error) => console.log(error))
+      })
+    }
+  }
+
   openRequest(id: string) {
     this.#router.navigateByUrl(`/managements/${id}`);
+  }
+
+  openSteps(request: string) {
+    this.#router.navigateByUrl(`/managements/${this.id}/${request}`);
   }
 }

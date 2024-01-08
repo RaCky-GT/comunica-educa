@@ -5,6 +5,7 @@ import {ManagementsComponent} from "@base/managements/managements.component";
 const routes: Routes = [
   { path: '', component: ManagementsComponent },
   { path: ':id', component: ManagementsComponent },
+  { path: ':id/:id_steps', component: ManagementsComponent },
 ];
 
 @NgModule({

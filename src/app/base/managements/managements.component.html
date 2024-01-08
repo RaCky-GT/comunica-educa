@@ -19,7 +19,7 @@
   </div>
 </div>
 </section>
-<section *ngIf="id">
+<section *ngIf="id && !id_steps">
   <div class="flex flex-wrap text-center justify-center">
     <div class="w-full lg:w-6/12 px-4">
       <h2 class="text-4xl font-semibold text-white">Solicitudes</h2>
@@ -35,8 +35,31 @@
         <h2 class="card-title">{{request.title}}</h2>
         <p>{{request.description}}</p>
         <div class="card-actions justify-end">
-          <button class="btn" (click)="openRequest(request.id)">Ver Solicitudes</button>
+          <button class="btn" (click)="openSteps(request.id)">Ver Pasos</button>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section *ngIf="id && id_steps">
+  <div class="flex flex-wrap text-center justify-center">
+    <div class="w-full lg:w-6/12 px-4">
+      <h2 class="text-4xl font-semibold text-white">Pasos</h2>
+      <p class="text-lg leading-relaxed mt-4 mb-4 text-sky-400">
+        Pasos disponibles.
+      </p>
+      <div class="flex flex-row justify-center gap-2">
+        <button class="btn mb-4" routerLink="/managements">Volver a Gestiones</button>
+        <button class="btn mb-4" routerLink="/managements/{{id}}">Volver a Solicitudes</button>
+      </div>
+
+    </div>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div class="card w-96 bg-accent text-primary-content" *ngFor="let step of steps()">
+      <div class="card-body">
+        <h2 class="card-title">{{step.title}}</h2>
+        <p>{{step.description}}</p>
       </div>
     </div>
   </div>

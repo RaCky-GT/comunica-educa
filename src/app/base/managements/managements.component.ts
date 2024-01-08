@@ -1,7 +1,8 @@
 import {Component, OnInit, inject, signal, Input} from '@angular/core';
-import { Managements } from '@core/models';
+import { Managements, Request } from '@core/models';
 
 import { ManagementsService } from '@core/services';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-managements',
@@ -14,8 +15,10 @@ export class ManagementsComponent implements OnInit {
   id?: string;
 
   private managementsService = inject(ManagementsService);
+  #router = inject(Router);
 
   public managements = signal<Managements[] | undefined>(undefined);
+  public requests = signal<Request[]>([])
   public managementsWasFound = signal(true);
 
   ngOnInit(): void {
@@ -43,7 +46,14 @@ export class ManagementsComponent implements OnInit {
 
   loadOneManagement() {
     if (this.id) {
-      const request = this.managementsService.getRequest(this.id).subscribe()
+      this.managementsService.getRequest(this.id).subscribe({
+        next: ((resp) => this.requests.set(resp)),
+        error: ((error) => console.log(error))
+      })
     }
+  }
+
+  openRequest(id: string) {
+    this.#router.navigateByUrl(`/managements/${id}`);
   }
 }

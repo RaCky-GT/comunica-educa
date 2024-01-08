@@ -1,4 +1,4 @@
-<script src="managements.component.ts"></script>
+<section *ngIf="!id">
 <div class="flex flex-wrap text-center justify-center">
   <div class="w-full lg:w-6/12 px-4">
     <h2 class="text-4xl font-semibold text-white">Gestiones</h2>
@@ -7,3 +7,37 @@
     </p>
   </div>
 </div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+  <div class="card w-96 bg-primary text-primary-content" *ngFor="let management of managements()">
+    <div class="card-body">
+      <h2 class="card-title">{{management.title}}</h2>
+      <p>{{management.description}}</p>
+      <div class="card-actions justify-end">
+        <button class="btn" (click)="openRequest(management.id)">Ver Solicitudes</button>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<section *ngIf="id">
+  <div class="flex flex-wrap text-center justify-center">
+    <div class="w-full lg:w-6/12 px-4">
+      <h2 class="text-4xl font-semibold text-white">Solicitudes</h2>
+      <p class="text-lg leading-relaxed mt-4 mb-4 text-sky-400">
+        Solicitudes disponibles.
+      </p>
+      <button class="btn mb-4" routerLink="/managements">Volver a Gestiones</button>
+    </div>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div class="card w-96 bg-secondary text-primary-content" *ngFor="let request of requests()">
+      <div class="card-body">
+        <h2 class="card-title">{{request.title}}</h2>
+        <p>{{request.description}}</p>
+        <div class="card-actions justify-end">
+          <button class="btn" (click)="openRequest(request.id)">Ver Solicitudes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

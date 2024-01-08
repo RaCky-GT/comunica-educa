@@ -59,7 +59,13 @@ export class StudentsDialogComponent {
     this.file = $event.target.files[0];
   }
 
-  onClose(): void {
+  onClose() {
     this.studentsService.setCurrentStudent(null);
+    return (this.studentsForm = this.fb.group({
+      description: ['', [Validators.required]],
+      link: ['', [Validators.required]],
+      title: ['', [Validators.required]],
+      grade: ['', [Validators.required]],
+    }));
   }
 }

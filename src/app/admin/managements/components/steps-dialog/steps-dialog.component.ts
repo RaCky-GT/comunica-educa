@@ -102,8 +102,19 @@ export class StepsDialogComponent implements OnInit{
     this.file = $event.target.files[0];
   }
 
-  onClose(): void {
+  onClose() {
     this.managementsService.setCurrentStep(null);
+    return (this.stepsForm = this.fb.group({
+      description: ['', [Validators.required]],
+      step_number: ['', [Validators.required, Validators.min(0)]],
+      status: [true, [Validators.required]],
+      title: ['', [Validators.required]],
+      company: [''],
+      address: [''],
+      link: [''],
+      contact: [''],
+      tel: [''],
+    }));
   }
 
 }

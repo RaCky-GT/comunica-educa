@@ -59,7 +59,13 @@ export class ProfessorsDialogComponent {
     this.file = $event.target.files[0];
   }
 
-  onClose(): void {
+  onClose() {
     this.professorsService.setCurrentProfessor(null);
+    return (this.professorsForm = this.fb.group({
+      description: ['', [Validators.required]],
+      link: ['', [Validators.required]],
+      title: ['', [Validators.required]],
+      grade: ['', [Validators.required]],
+    }));
   }
 }

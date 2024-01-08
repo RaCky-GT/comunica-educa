@@ -55,7 +55,12 @@ export class RequestDialogComponent {
     }
   }
 
-  onClose(): void {
+  onClose() {
     this.managementsService.setCurrentRequest(null);
+    return (this.requestForm = this.fb.group({
+      description: ['', [Validators.required]],
+      status: [true, [Validators.required]],
+      title: ['', [Validators.required]],
+    }));
   }
 }

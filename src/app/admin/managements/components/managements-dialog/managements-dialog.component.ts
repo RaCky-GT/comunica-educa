@@ -52,7 +52,12 @@ export class ManagementsDialogComponent {
     }
   }
 
-  onClose(): void {
+  onClose() {
     this.managementsService.setCurrentManagement(null);
+    return (this.managementsForm = this.fb.group({
+      description: ['', [Validators.required]],
+      status: [true, [Validators.required]],
+      title: ['', [Validators.required]],
+    }));
   }
 }

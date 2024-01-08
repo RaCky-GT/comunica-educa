@@ -35,7 +35,6 @@ export class ManagementsComponent implements OnInit {
     this.loadManagements();
     this.loadOneManagement();
     this.loadOneRequest();
-    console.log(this.management_name)
   }
 
   loadManagements(): void {
@@ -59,7 +58,9 @@ export class ManagementsComponent implements OnInit {
   loadOneManagement() {
     if (this.id) {
       this.managementsService.getRequest(this.id).subscribe({
-        next: ((resp) => this.requests.set(resp)),
+        next: ((resp) => {
+          return this.requests.set(resp.filter(step => step.status))
+        }),
         error: ((error) => console.log(error))
       })
     }
@@ -68,7 +69,10 @@ export class ManagementsComponent implements OnInit {
   loadOneRequest() {
     if (this.id_steps) {
       this.managementsService.getSteps(this.id!, this.id_steps).subscribe({
-        next: ((resp) => this.steps.set(resp)),
+        next: ((resp) => {
+          resp.sort((a, b) => a.step_number - b.step_number);
+          return this.steps.set(resp.filter(step => step.status))
+        }),
         error: ((error) => console.log(error))
       })
     }

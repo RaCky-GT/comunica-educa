@@ -17,6 +17,12 @@ export class ManagementsComponent implements OnInit {
   @Input()
   id_steps?: string;
 
+  @Input()
+  management_name?: string;
+
+  @Input()
+  steps_name?: string;
+
   private managementsService = inject(ManagementsService);
   #router = inject(Router);
 
@@ -29,6 +35,7 @@ export class ManagementsComponent implements OnInit {
     this.loadManagements();
     this.loadOneManagement();
     this.loadOneRequest();
+    console.log(this.management_name)
   }
 
   loadManagements(): void {
@@ -67,11 +74,12 @@ export class ManagementsComponent implements OnInit {
     }
   }
 
-  openRequest(id: string) {
-    this.#router.navigateByUrl(`/managements/${id}`);
+  openRequest(id: string, management: string) {
+    this.#router.navigateByUrl(`/managements/${id}/${management}`);
   }
 
-  openSteps(request: string) {
-    this.#router.navigateByUrl(`/managements/${this.id}/${request}`);
+  openSteps(request: string, request_name:string) {
+    console.log(request, request_name)
+    this.#router.navigateByUrl(`/managements/${this.id}/${this.management_name}/${request}/${request_name}`);
   }
 }

@@ -4,8 +4,8 @@ import {ManagementsComponent} from "@base/managements/managements.component";
 
 const routes: Routes = [
   { path: '', component: ManagementsComponent },
-  { path: ':id', component: ManagementsComponent },
-  { path: ':id/:id_steps', component: ManagementsComponent },
+  { path: ':id/:management_name', component: ManagementsComponent },
+  { path: ':id/:management_name/:id_steps/:steps_name', component: ManagementsComponent },
 ];
 
 @NgModule({

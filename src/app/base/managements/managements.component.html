@@ -13,7 +13,7 @@
       <h2 class="card-title">{{management.title}}</h2>
       <p>{{management.description}}</p>
       <div class="card-actions justify-end">
-        <button class="btn" (click)="openRequest(management.id)">Ver Solicitudes</button>
+        <button class="btn" (click)="openRequest(management.id, management.title)">Ver Solicitudes</button>
       </div>
     </div>
   </div>
@@ -22,7 +22,7 @@
 <section *ngIf="id && !id_steps">
   <div class="flex flex-wrap text-center justify-center">
     <div class="w-full lg:w-6/12 px-4">
-      <h2 class="text-4xl font-semibold text-white">Solicitudes</h2>
+      <h2 class="text-4xl font-semibold text-white">Solicitudes de {{management_name}}</h2>
       <p class="text-lg leading-relaxed mt-4 mb-4 text-sky-400">
         Solicitudes disponibles.
       </p>
@@ -35,7 +35,7 @@
         <h2 class="card-title">{{request.title}}</h2>
         <p>{{request.description}}</p>
         <div class="card-actions justify-end">
-          <button class="btn" (click)="openSteps(request.id)">Ver Pasos</button>
+          <button class="btn" (click)="openSteps(request.id, request.title)">Ver Pasos</button>
         </div>
       </div>
     </div>
@@ -44,23 +44,27 @@
 <section *ngIf="id && id_steps">
   <div class="flex flex-wrap text-center justify-center">
     <div class="w-full lg:w-6/12 px-4">
-      <h2 class="text-4xl font-semibold text-white">Pasos</h2>
+      <h2 class="text-4xl font-semibold text-white">Pasos de {{steps_name}}</h2>
       <p class="text-lg leading-relaxed mt-4 mb-4 text-sky-400">
         Pasos disponibles.
       </p>
       <div class="flex flex-row justify-center gap-2">
         <button class="btn mb-4" routerLink="/managements">Volver a Gestiones</button>
-        <button class="btn mb-4" routerLink="/managements/{{id}}">Volver a Solicitudes</button>
+        <button class="btn mb-4" routerLink="/managements/{{id}}/{{management_name}}">Volver a Solicitudes</button>
       </div>
+      <ul class="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical">
+        <li *ngFor="let step of steps(); let even = even">
+          <div class="timeline-middle">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5 text-accent"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" /></svg>
+          </div>
+          <div [ngClass]="{'timeline-start': even, 'timeline-end': !even, 'md:text-end': even, 'md:text-start': !even}" class="mb-10 text-white">
+            <div class="text-lg font-black">{{step.title}}</div>
+            {{step.description}}
+          </div>
+          <hr class="bg-primary"/>
+        </li>
+      </ul>
+    </div>
+  </div>
 
-    </div>
-  </div>
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-    <div class="card w-96 bg-accent text-primary-content" *ngFor="let step of steps()">
-      <div class="card-body">
-        <h2 class="card-title">{{step.title}}</h2>
-        <p>{{step.description}}</p>
-      </div>
-    </div>
-  </div>
 </section>

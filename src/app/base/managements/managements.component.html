@@ -1,3 +1,4 @@
+<script src="managements.component.ts"></script>
 <div class="flex flex-wrap text-center justify-center">
   <div class="w-full lg:w-6/12 px-4">
     <h2 class="text-4xl font-semibold text-white">Gestiones</h2>
@@ -6,46 +7,3 @@
     </p>
   </div>
 </div>
-<div class="drawer lg:drawer-open">
-  <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
-  <div class="drawer-content flex flex-col items-center justify-center">
-    <!-- Page content here -->
-    <label for="my-drawer-2" class="btn btn-primary drawer-button lg:hidden">Abrir Gestiones</label>
-    <div *ngIf="id; else elseBlock">
-      <h1>Hola</h1>
-    </div>
-    <ng-template #elseBlock>
-      <h1 class="text-white">Seleccione una gestion</h1>
-    </ng-template>
-
-  </div>
-  <div class="drawer-side">
-    <label for="my-drawer-2" aria-label="close sidebar" class="drawer-overlay"></label>
-    <ul class="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
-      <li *ngFor="let management of managements()"><a [routerLink]="'/managements/'+management.id">{{ management.title }}</a></li>
-    </ul>
-
-  </div>
-</div>
-<!--<div-->
-<!--  class="grid grid-cols-1 md:grid-cols-3 grid-rows-4 gap-4"-->
-<!--  *ngFor="let managements of managements()"-->
-<!--&gt;-->
-<!--  <div-->
-<!--    class="card lg:card-side bg-base-100 shadow-xl"-->
-<!--    *ngIf="managements.status === true"-->
-<!--  >-->
-<!--    <div class="card-body">-->
-<!--      <h2 class="card-title">-->
-<!--        {{ managements.title }}-->
-<!--        <div class="badge badge-accent">-->
-<!--          {{ managements.status === true ? "Activa" : "Inactiva" }}-->
-<!--        </div>-->
-<!--      </h2>-->
-<!--      <p>{{ managements.description }}</p>-->
-<!--      &lt;!&ndash; <div class="card-actions justify-end">-->
-<!--          <button class="btn btn-primary">Ver</button>-->
-<!--        </div> &ndash;&gt;-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->

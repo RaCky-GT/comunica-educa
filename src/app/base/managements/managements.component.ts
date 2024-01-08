@@ -13,7 +13,6 @@ export class ManagementsComponent implements OnInit {
   @Input()
   id?: string;
 
-
   private managementsService = inject(ManagementsService);
 
   public managements = signal<Managements[] | undefined>(undefined);
@@ -21,6 +20,7 @@ export class ManagementsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadManagements();
+    this.loadOneManagement();
   }
 
   loadManagements(): void {
@@ -39,5 +39,11 @@ export class ManagementsComponent implements OnInit {
         this.managementsWasFound.set(false);
       }
     })
+  }
+
+  loadOneManagement() {
+    if (this.id) {
+      const request = this.managementsService.getRequest(this.id).subscribe()
+    }
   }
 }
